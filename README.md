@@ -1,51 +1,50 @@
-## Public demo version (sanitized)
+## Chat_Bot_Clothes_Brand (public demo)
 
-Этот репозиторий — **демо-версия Telegram-бота** (aiogram) для бренда **Example Brand**.  
-Он собран как портфолио-проект: **без персональных данных, токенов и приватных ссылок**. Всё, что относится к доступам и конкретному бренду, вынесено в переменные окружения.
+Публичная, обезличенная **демо-версия Telegram-бота** (aiogram) для бренда **Example Brand** — сделана как портфолио-проект: без персональных данных, боевых токенов и приватных ссылок. Конфигурация и интеграции вынесены в переменные окружения.
 
-### Что внутри
-- **Меню + FAQ**: разделы бота с контентом и юридическими заглушками для демо.
-- **Поддержка (forum tickets)**: создание тикета в Telegram-супергруппе с форумом (опционально).
-- **Кэшбек-флоу**: приём чека/ссылки, валидации, (опциональная) запись заявки в Google Sheets.
-- **Уведомления**: пересылка постов из канала по хэштегам (опционально).
+### Summary
+- **Domain**: customer support + cashback flow + notifications for a clothes brand (demo)
+- **Focus**: architecture, integrations, data handling, and publish-safe repo hygiene
 
-### Быстрый старт
-1) Перейдите в папку `wbshop-bot/` и установите зависимости.
-2) Скопируйте пример окружения:
+### Features
+- **Menu + FAQ**: контентные разделы, включая демо-юридические тексты
+- **Support tickets (forum topics)**: тикеты в Telegram-супергруппе с форумом (опционально)
+- **Cashback flow**: приём чека/ссылки/PDF, поиск/валидации, (опционально) запись заявки в Google Sheets
+- **Notifications**: пересылка постов из канала по хэштегам (опционально)
+
+### Tech stack
+- **Python 3**
+- **aiogram** (Telegram bot framework)
+- **SQLAlchemy + aiosqlite** (storage)
+- **python-dotenv** (local env)
+- **pdfminer.six** (PDF parsing)
+
+### Run locally
+Перейдите в папку `wbshop-bot/`, установите зависимости и запустите бота:
 
 ```bash
+pip install -r requirements.txt
 cp .env.example .env
-```
-
-3) Заполните минимум `BOT_TOKEN` в `.env` и запустите:
-
-```bash
 python main.py
 ```
 
-### Конфигурация (что и как настраивается)
-Основные переменные описаны в `wbshop-bot/.env.example`.  
-Ключевой файл, который их читает: `wbshop-bot/config.py`.
+### Configuration
+- **Minimal**: `wbshop-bot/.env.example`
+- **Full reference**: `wbshop-bot/.env.full.example`
+- **Runtime config loader**: `wbshop-bot/config.py`
 
-Если вам нужен полный список переменных (все опциональные интеграции и тюнинг), смотрите `wbshop-bot/.env.full.example`.
+Основные переменные:
+- **`BOT_TOKEN`**: токен Telegram-бота (обязателен для запуска)
+- **`BRAND_NAME`, `BRAND_TAG`**: нейтральный брендинг в UI/сообщениях
+- **`COMMUNITY_URL`, `BRAND_SITE_URL`, `CATALOG_*_URL`, `PARTNER_FORM_URL`**: ссылки и кнопки меню
+- **`SUPPORT_GROUP_ID`, `GENERAL_THREAD_ID`**: интеграция поддержки (опционально)
+- **`NOTIFY_SOURCE_CHANNEL`**: источник уведомлений (опционально)
 
-- **BRAND_NAME**: имя бренда в UI.
-- **BRAND_TAG**: тег для служебных сообщений поддержки (пример: `EXAMPLE`).  
-  При желании можно также использовать переменную `PROJECT_TAG` (см. `support_forum.py`).
-- **COMMUNITY_URL / BRAND_SITE_URL / CATALOG_*_URL**: ссылки, которые раньше были захардкожены в `main.py` и `ui/menu.py`.
-- **PARTNER_FORM_URL**: ссылка на форму сотрудничества (раньше была в `ui/partner.py`).
-- **NOTIFY_SOURCE_CHANNEL**: источник для рассылки уведомлений (раньше был захардкожен числовой `-100...` в `ui/notify.py`).
-- **SUPPORT_GROUP_ID / GENERAL_THREAD_ID**: ID супергруппы с форумом и thread-id темы General/Statuses для поддержки (опционально).
+### Engineering highlights (portfolio)
+- **Sanitized/public-safe repo**: исключены секреты и локальные артефакты (`.env`, `creds`, venv, `__pycache__`, БД/медиа)
+- **Config isolation**: брендинг/ссылки вынесены в env через единый `config.py`
+- **Graceful degradation**: интеграции (GSheets/support/notify) опциональны и не блокируют базовый запуск
 
-### “Sanitization notes” (что заменено в демо)
-Ниже — краткий список того, что было обезличено и вынесено в конфигурацию:
-
-- **Название бренда/кампании** → `BRAND_NAME=Example Brand`
-- **Служебные теги в поддержке** → `BRAND_TAG=EXAMPLE` (или `PROJECT_TAG`, если удобнее)
-- **t.me/… и маркетплейсы с реальными seller/shop id** → **example.com / @example_brand_news** (через env)
-- **Юр.реквизиты и ФИО из FAQ** → **демо-заглушки** (в `ui/faq.py`)
-- **Боевые токены/ключи** → **исключены из репозитория** (через `.env`, который не коммитится)
-
-### Важно про секреты
-Если этот проект когда-либо содержал реальные токены в git-истории, их нужно считать скомпрометированными и **обязательно ротировать** (Telegram bot token, WB API key, Google service account и т.д.).
+### Notes about secrets
+Если проект когда-либо содержал реальные токены в истории git, их нужно считать скомпрометированными и **ротировать** (Telegram/WB/Google и т.д.).
 
