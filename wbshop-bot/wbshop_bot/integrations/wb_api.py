@@ -10,8 +10,8 @@ from datetime import datetime, timezone, timedelta
 import httpx
 from sqlalchemy import text
 
-from db import engine
-from secrets_util import dec
+from wbshop_bot.storage.db import engine
+from wbshop_bot.storage.secrets_util import dec
 
 # =======================
 # Мульти-токены (БД + fallback из .env)

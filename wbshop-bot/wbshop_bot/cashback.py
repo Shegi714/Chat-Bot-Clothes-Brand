@@ -1,6 +1,6 @@
 # bonus.py
 from __future__ import annotations
-from ui.menu import send_main_menu_inline as send_main_menu
+from wbshop_bot.ui.menu import send_main_menu_inline as send_main_menu
 
 import os
 import re
@@ -34,13 +34,13 @@ logger = logging.getLogger("bonus")
 router = Router(name="bonus")
 
 try:
-    from db import async_session_maker  # type: ignore
+    from wbshop_bot.storage.db import async_session_maker  # type: ignore
 except Exception:
     from sqlalchemy.ext.asyncio import async_sessionmaker
-    from db import engine  # type: ignore
+    from wbshop_bot.storage.db import engine  # type: ignore
     async_session_maker = async_sessionmaker(engine, expire_on_commit=False)  # type: ignore
 
-from dao import (
+from wbshop_bot.storage.dao import (
     srid_core,
     find_orders_by_srids_fuzzy,
     find_reviews_for_orders,
@@ -49,8 +49,8 @@ from dao import (
     get_user_discount,  # добавили
     set_user_discount,
 )
-from models import Order, Review
-from services.receipts import (
+from wbshop_bot.storage.models import Order, Review
+from wbshop_bot.services.receipts import (
     extract_srid_from_pdf,
     extract_srids_from_url,
     extract_srids_from_url_async_all,
@@ -58,7 +58,7 @@ from services.receipts import (
 )
 
 # ==== интеграция с тикетами поддержки
-from support_forum import (
+from wbshop_bot.support.forum import (
     create_forum_topic,
     send_card_in_thread,
     post_user_payload_into_thread,
@@ -67,7 +67,7 @@ from support_forum import (
     TStatus,
     SUPPORT_GROUP_ID,  # chat_id чата поддержки
 )
-from support_repo import insert_ticket
+from wbshop_bot.support.repo import insert_ticket
 
 VALIDATE_ORDER_MAX_AGE_DAYS = int(os.getenv("BONUS_ORDER_MAX_AGE_DAYS", "0"))
 BONUS_MAX_SRIDS = int(os.getenv("BONUS_MAX_SRIDS", "0"))
@@ -1273,7 +1273,7 @@ async def handle_repost_screenshot(message: Message, state: FSMContext):
         await message.answer("Нужно прислать изображение. Пожалуйста, пришлите скриншот репоста.", reply_markup=kb_back_only())
         return
 
-    from support_forum import (
+    from wbshop_bot.support.forum import (
         create_forum_topic,
         send_card_in_thread,
         ticket_header,
@@ -1282,7 +1282,7 @@ async def handle_repost_screenshot(message: Message, state: FSMContext):
         SUPPORT_GROUP_ID,
         PROJECT_TAG,
     )
-    from support_repo import insert_ticket
+    from wbshop_bot.support.repo import insert_ticket
 
     ticket_id = f"BONUS-{secrets.token_hex(3).upper()}-RP"
     register_bonus_ticket(ticket_id)

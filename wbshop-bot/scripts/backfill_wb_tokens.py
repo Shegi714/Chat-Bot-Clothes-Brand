@@ -10,12 +10,12 @@ import asyncio
 from datetime import datetime, timedelta, timezone
 from typing import List, Tuple
 
-from wb_api import (
+from wbshop_bot.integrations.wb_api import (
     get_active_tokens,
     fetch_orders_range,
     fetch_reviews_range,
 )
-from dao import upsert_orders, upsert_reviews
+from wbshop_bot.storage.dao import upsert_orders, upsert_reviews
 
 
 # -------- helpers --------

@@ -6,8 +6,8 @@ from decimal import Decimal
 from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models import Order, Review, SyncCursor, BonusClaim, UserDiscount
-from db import async_session_maker  # добавили для пакетных upsert'ов
+from wbshop_bot.storage.models import Order, Review, SyncCursor, BonusClaim, UserDiscount
+from wbshop_bot.storage.db import async_session_maker  # добавили для пакетных upsert'ов
 
 CURSOR_KEY_ORDERS = "wb_orders_last_change"
 CURSOR_KEY_FEEDBACKS = "wb_feedbacks_last_ts"   # Unix timestamp (int) в строке

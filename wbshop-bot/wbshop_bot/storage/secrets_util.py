@@ -5,7 +5,7 @@ try:
 except Exception:
     Fernet = None  # библиотека может отсутствовать
 
-from config import TOKENS_FERNET_KEY
+from wbshop_bot.config import TOKENS_FERNET_KEY
 
 _KEY = TOKENS_FERNET_KEY  # сгенерируйте один раз: Fernet.generate_key().decode()
 

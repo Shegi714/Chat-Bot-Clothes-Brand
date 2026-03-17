@@ -8,10 +8,10 @@ from datetime import datetime, timezone
 from calendar import monthrange
 
 from sqlalchemy import text
-from db import engine  # AsyncEngine для SQL очистки
+from wbshop_bot.storage.db import engine  # AsyncEngine для SQL очистки
 
-from wb_api import get_active_tokens, get_cursor, set_cursor, fetch_orders_page
-from dao import upsert_orders  # idempotent пакетная вставка/апдейт заказов
+from wbshop_bot.integrations.wb_api import get_active_tokens, get_cursor, set_cursor, fetch_orders_page
+from wbshop_bot.storage.dao import upsert_orders  # idempotent пакетная вставка/апдейт заказов
 
 LOG = logging.getLogger("agent_orders")
 

@@ -14,10 +14,15 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 
 # Demo/public-safe branding defaults
-from config import BRAND_NAME, BRAND_TAG, SUPPORT_GROUP_ID as CFG_SUPPORT_GROUP_ID, GENERAL_THREAD_ID as CFG_GENERAL_THREAD_ID
+from wbshop_bot.config import (
+    BRAND_NAME,
+    BRAND_TAG,
+    SUPPORT_GROUP_ID as CFG_SUPPORT_GROUP_ID,
+    GENERAL_THREAD_ID as CFG_GENERAL_THREAD_ID,
+)
 
 # === БД-репозиторий тикетов ===
-from support_repo import (
+from wbshop_bot.support.repo import (
     init_tables as support_init_tables,
     insert_ticket, update_ticket,
     get_by_thread, get_by_ticket,
@@ -25,10 +30,10 @@ from support_repo import (
 )
 
 # БД для скидок
-from dao import set_user_discount, get_user_discount
+from wbshop_bot.storage.dao import set_user_discount, get_user_discount
 
 # UI
-from ui.menu import ticket_resolved_feedback_inline, send_main_menu_inline
+from wbshop_bot.ui.menu import ticket_resolved_feedback_inline, send_main_menu_inline
 
 # ==== ENV / CONSTS ====
 # NOTE: we still allow overriding via env, but parse once in config.py

@@ -4,7 +4,7 @@ from __future__ import annotations
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-from config import BRAND_NAME
+from wbshop_bot.config import BRAND_NAME
 
 router = Router(name="faq")
 

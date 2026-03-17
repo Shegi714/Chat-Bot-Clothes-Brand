@@ -12,12 +12,12 @@ from aiogram.types import (
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from sqlalchemy import text
-from db import engine
+from wbshop_bot.storage.db import engine
 
 # 👇 добавлено: чтобы уметь вернуть пользователя в Главное меню
-from ui.menu import main_menu_inline, send_main_menu_inline
+from wbshop_bot.ui.menu import main_menu_inline, send_main_menu_inline
 
-from config import NOTIFY_SOURCE_CHANNEL
+from wbshop_bot.config import NOTIFY_SOURCE_CHANNEL
 
 router = Router(name="notify")
 

@@ -2,7 +2,7 @@ import os
 import asyncio
 import pathlib
 
-from config import (
+from wbshop_bot.config import (
     BOT_TOKEN,
     BRAND_NAME,
     BOT_FALLBACK_USERNAME,
@@ -23,42 +23,42 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage  # хранилище FSM
 
 # агенты
-from agent_orders import daily_orders_agent
-from agent_reviews import daily_reviews_agent
+from wbshop_bot.agents.orders_agent import daily_orders_agent
+from wbshop_bot.agents.reviews_agent import daily_reviews_agent
 
 # БД
-from db import engine, DATABASE_URL
-from models import Base
+from wbshop_bot.storage.db import engine, DATABASE_URL
+from wbshop_bot.storage.models import Base
 
 # главное меню (совместимо с кодом из ui/menu)
-from ui.menu import main_menu_inline, send_main_menu_inline
+from wbshop_bot.ui.menu import main_menu_inline, send_main_menu_inline
 # FAQ роутер + доступ к контенту (берём текст для "consent")
-from ui.faq import router as faq_router, FAQ
+from wbshop_bot.ui.faq import router as faq_router, FAQ
 
 # форумы поддержки (Variant B: тема на тикет + General)
-from support_forum import (
+from wbshop_bot.support.forum import (
     router as support_forum_router,
     enter_support_from_menu,
 )
 
 # раздел «Сотрудничество»
-from ui.partner import router as partner_router
+from wbshop_bot.ui.partner import router as partner_router
 
 # раздел «Персональные уведомления»
-from ui.notify import router as notify_router, init_notify_storage
+from wbshop_bot.ui.notify import router as notify_router, init_notify_storage
 
 # ✅ репозиторий подписок уведомлений (новый файл)
-from ui.notify_repo import ensure_notify_on  # автоподписываем только при /start
+from wbshop_bot.ui.notify_repo import ensure_notify_on  # автоподписываем только при /start
 
 # support repo (DDL fallback)
-from support_repo import init_tables as support_init_tables
+from wbshop_bot.support.repo import init_tables as support_init_tables
 
 # cashback router
-from bonus import router as bonus_router
+from wbshop_bot.cashback import router as bonus_router
 
 # Пытаемся подтянуть init_support_storage из support_forum, если он там есть
 try:
-    from support_forum import init_support_storage  # type: ignore
+    from wbshop_bot.support.forum import init_support_storage  # type: ignore
 except Exception:
     init_support_storage = None  # будет fallback на support_repo.init_tables
 

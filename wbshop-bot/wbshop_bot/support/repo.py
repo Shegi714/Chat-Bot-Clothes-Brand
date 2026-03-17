@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any
 
 from sqlalchemy import text
-from db import engine  # используем общий engine
+from wbshop_bot.storage.db import engine  # используем общий engine
 
 TBL = "support_tickets"
 

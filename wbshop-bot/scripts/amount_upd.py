@@ -34,21 +34,22 @@ from dotenv import load_dotenv
 from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
-# грузим .env
+# грузим .env (локальный запуск)
 load_dotenv()
 
 # --- DB фабрика сессий ---
 try:
-    from db import async_session_maker  # type: ignore
+    from wbshop_bot.storage.db import async_session_maker  # type: ignore
 except Exception:
     from sqlalchemy.ext.asyncio import async_sessionmaker
-    from db import engine  # type: ignore
+    from wbshop_bot.storage.db import engine  # type: ignore
     async_session_maker = async_sessionmaker(engine, expire_on_commit=False)  # type: ignore
 
-from models import Order  # type: ignore
+from wbshop_bot.storage.models import Order  # type: ignore
 
+from wbshop_bot.config import WB_API_KEY as WB_API_KEY_CFG
 WB_STAT_BASE = os.getenv("WB_STAT_BASE", "https://statistics-api.wildberries.ru")
-WB_API_KEY = os.getenv("WB_API_KEY", "").strip()
+WB_API_KEY = (WB_API_KEY_CFG or os.getenv("WB_API_KEY", "")).strip()
 if not WB_API_KEY:
     raise RuntimeError("WB_API_KEY не задан в .env — укажите токен поставщика Wildberries")
 

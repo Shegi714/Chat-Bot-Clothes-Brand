@@ -7,12 +7,12 @@ from calendar import monthrange
 
 from sqlalchemy import text
 
-from db import SessionLocal
-from dao import (
+from wbshop_bot.storage.db import SessionLocal
+from wbshop_bot.storage.dao import (
     CURSOR_KEY_FEEDBACKS, get_cursor, set_cursor,
     upsert_review_from_wb,
 )
-from wb_feedbacks_api import fetch_feedbacks  # должен поддерживать date_from_ts и date_to_ts
+from wbshop_bot.integrations.wb_feedbacks_api import fetch_feedbacks  # должен поддерживать date_from_ts и date_to_ts
 
 LOG = logging.getLogger("agent_reviews")
 

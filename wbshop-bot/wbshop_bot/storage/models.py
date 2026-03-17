@@ -8,7 +8,7 @@ from decimal import Decimal
 from sqlalchemy import String, Integer, Boolean, DateTime, Text, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from db import Base
+from wbshop_bot.storage.db import Base
 
 
 def utcnow() -> datetime:

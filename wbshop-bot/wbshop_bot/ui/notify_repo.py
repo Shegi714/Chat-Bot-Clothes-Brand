@@ -1,7 +1,7 @@
 # notify_repo.py
 from __future__ import annotations
 from sqlalchemy import text
-from db import engine
+from wbshop_bot.storage.db import engine
 
 # Создание таблицы (безопасно, если уже есть)
 CREATE_TABLE_SQL = """

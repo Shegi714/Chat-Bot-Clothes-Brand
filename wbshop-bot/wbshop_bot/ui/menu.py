@@ -2,7 +2,7 @@
 from aiogram.types import Message, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from config import BRAND_NAME, BRAND_SITE_URL
+from wbshop_bot.config import BRAND_NAME, BRAND_SITE_URL
 
 def main_menu_inline() -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()

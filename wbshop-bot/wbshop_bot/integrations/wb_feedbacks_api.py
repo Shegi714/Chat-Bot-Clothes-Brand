@@ -7,7 +7,8 @@ import httpx
 BASE = "https://feedbacks-api.wildberries.ru"
 
 def _headers():
-    key = os.getenv("WB_API_KEY", "")
+    from wbshop_bot.config import WB_API_KEY
+    key = WB_API_KEY or ""
     return {"Authorization": key, "Accept": "application/json"}
 
 RATE_LIMIT_DELAY = 0.35  # 3 req/sec (берём запас)

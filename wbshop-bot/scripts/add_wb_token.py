@@ -14,8 +14,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import asyncio
 from sqlalchemy import text
-from db import engine  # импортируем ваш async engine
-from secrets_util import enc  # если не используете шифрование — можно заменить на lambda s: s
+from wbshop_bot.storage.db import engine  # импортируем ваш async engine
+from wbshop_bot.storage.secrets_util import enc  # если не используете шифрование — можно заменить на lambda s: s
 
 # ======== НАСТРОЙКИ ==========
 ALIAS = "shop-2"          # короткое имя кабинета (например: shop-main, wb2 и т.п.)

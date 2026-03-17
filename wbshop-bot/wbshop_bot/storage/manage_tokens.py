@@ -2,8 +2,8 @@
 from __future__ import annotations
 import argparse, asyncio
 from sqlalchemy import text
-from db import engine
-from secrets_util import enc
+from wbshop_bot.storage.db import engine
+from wbshop_bot.storage.secrets_util import enc
 
 async def add(alias: str, token: str):
     async with engine.begin() as conn:

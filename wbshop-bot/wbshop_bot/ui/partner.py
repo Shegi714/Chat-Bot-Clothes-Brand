@@ -4,7 +4,7 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from config import BRAND_NAME, PARTNER_FORM_URL
+from wbshop_bot.config import BRAND_NAME, PARTNER_FORM_URL
 
 router = Router(name="partner")
 

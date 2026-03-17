@@ -11,8 +11,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import asyncio
 from sqlalchemy import text
-from db import engine
-from models import Base
+from wbshop_bot.storage.db import engine
+from wbshop_bot.storage.models import Base
 
 DDL_TOKENS = """
 CREATE TABLE IF NOT EXISTS wb_tokens (
