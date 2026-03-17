@@ -28,6 +28,27 @@ cp .env.example .env
 python main.py
 ```
 
+### Project layout
+Код собран в пакет `wbshop_bot/`, а `main.py` остаётся entrypoint’ом.
+
+```text
+wbshop-bot/
+  main.py                 # entrypoint
+  requirements.txt
+  .env.example
+  .env.full.example
+  scripts/                # утилиты/скрипты запуска
+  wbshop_bot/             # основной пакет
+    agents/               # фоновые задачи (orders/reviews)
+    integrations/         # внешние API (WB)
+    services/             # сервисные хелперы (например receipts parser)
+    storage/              # БД, модели, DAO, токены
+    support/              # тикеты/поддержка (forum + repo)
+    ui/                   # роутеры меню/FAQ/notify/partner
+    cashback.py           # кэшбек-флоу (router)
+    config.py             # env-driven конфиг
+```
+
 ### Configuration
 - **Minimal**: `wbshop-bot/.env.example`
 - **Full reference**: `wbshop-bot/.env.full.example`
