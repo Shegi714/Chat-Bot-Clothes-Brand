@@ -1,0 +1,20 @@
+# --- Python / venv ---
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# --- Environment / secrets ---
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.full.example
+**/creds/*.json
+**/*service_account*.json
+
+# --- Local data / caches ---
+**/*.db
+**/data/howto_video.json
+**/instruction.mp4
+
+# IDE/runtime artifacts
+**/ui/__pycache__/

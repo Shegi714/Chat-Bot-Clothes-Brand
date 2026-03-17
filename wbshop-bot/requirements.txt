@@ -1,0 +1,7 @@
+aiogram==3.5.0
+python-dotenv==1.0.1
+httpx==0.27.2
+SQLAlchemy==2.0.32
+aiosqlite==0.20.0
+pdfminer.six>=20231228
+redis>=5.0.0
