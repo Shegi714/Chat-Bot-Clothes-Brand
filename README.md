@@ -29,19 +29,19 @@ python main.py
 
 Если вам нужен полный список переменных (все опциональные интеграции и тюнинг), смотрите `wbshop-bot/.env.full.example`.
 
-- **BRAND_NAME**: имя бренда в UI (вместо прежнего IDOLIST/Poliano).
+- **BRAND_NAME**: имя бренда в UI.
 - **BRAND_TAG**: тег для служебных сообщений поддержки (пример: `EXAMPLE`).  
-  Раньше: `PROJECT_TAG=IDOLIST` → теперь: `BRAND_TAG=EXAMPLE` (или `PROJECT_TAG`, если хотите оставить прежнее имя переменной).
+  При желании можно также использовать переменную `PROJECT_TAG` (см. `support_forum.py`).
 - **COMMUNITY_URL / BRAND_SITE_URL / CATALOG_*_URL**: ссылки, которые раньше были захардкожены в `main.py` и `ui/menu.py`.
 - **PARTNER_FORM_URL**: ссылка на форму сотрудничества (раньше была в `ui/partner.py`).
 - **NOTIFY_SOURCE_CHANNEL**: источник для рассылки уведомлений (раньше был захардкожен числовой `-100...` в `ui/notify.py`).
 - **SUPPORT_GROUP_ID / GENERAL_THREAD_ID**: ID супергруппы с форумом и thread-id темы General/Statuses для поддержки (опционально).
 
 ### “Sanitization notes” (что заменено в демо)
-Ниже — пример «словари замен», чтобы было понятно, что и как было обезличено:
+Ниже — краткий список того, что было обезличено и вынесено в конфигурацию:
 
-- **IDOLIST (бренд/кампания)** → **Example Brand** (`BRAND_NAME`)
-- **PROJECT_TAG=IDOLIST (тег в поддержке)** → **BRAND_TAG=EXAMPLE**
+- **Название бренда/кампании** → `BRAND_NAME=Example Brand`
+- **Служебные теги в поддержке** → `BRAND_TAG=EXAMPLE` (или `PROJECT_TAG`, если удобнее)
 - **t.me/… и маркетплейсы с реальными seller/shop id** → **example.com / @example_brand_news** (через env)
 - **Юр.реквизиты и ФИО из FAQ** → **демо-заглушки** (в `ui/faq.py`)
 - **Боевые токены/ключи** → **исключены из репозитория** (через `.env`, который не коммитится)
